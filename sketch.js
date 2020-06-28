@@ -58,11 +58,11 @@ const matrizPersonagem = [
 ]
 
 function preload() {
-  imagemCenario = loadImage('imagens/cenario/floresta.png');
-  imagemPersonagem = loadImage('imagens/personagem/correndo.png');
-  imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
-  somDoJogo = loadSound('sons/trilha_jogo.mp3');
-  somDoPulo = loadSound('sons/somPulo.mp3');
+  imagemCenario = loadImage('https://i.imgur.com/jRCt0JV.png');
+  imagemPersonagem = loadImage('https://i.imgur.com/IeWhcfL.png');
+  imagemInimigo = loadImage('https://i.imgur.com/oy55ZMq.png');
+  somDoJogo = loadSound('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/sons/trilha_jogo.mp3');
+  somDoPulo = loadSound('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/sons/somPulo.mp3');
 }
 
 function setup() {
