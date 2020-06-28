@@ -2,12 +2,20 @@
 let imagemCenario;
 let imagemPersonagem;
 let imagemInimigo;
+let imagemInimigoGrande;
+let imagemInimigoVoador;
+let imagemGameOver;
 let somDoPulo;
 
 let cenario;
 let somDoJogo;
 let personagem;
 let inimigo;
+let inimigoGrande;
+let inimigoVoador;
+let pontuacao;
+
+const inimigos = [];
 
 const matrizInimigo = [
   [0, 0],
@@ -39,6 +47,58 @@ const matrizInimigo = [
   [208, 626],
   [312, 626],
 ]
+
+const matrizInimigoGrande = [
+  [0,0],
+  [400,0],
+  [800,0],
+  [1200,0],
+  [1600,0],
+  [0,400],
+  [400,400],
+  [800,400],
+  [1200, 400],
+  [1600, 400],
+  [0,800],
+  [400, 800],
+  [800, 800],
+  [1200, 800],
+  [1600, 800],
+  [0, 1200],
+  [400, 1200],
+  [800, 1200],
+  [1200, 1200],
+  [1600, 1200], 
+  [0, 1600],
+  [400, 1600],
+  [800, 1600],
+  [1200, 1600],
+  [1600, 1600],
+  [0, 2000],
+  [400, 2000],
+  [800, 2000],
+]
+
+const matrizInimigoVoador = [
+  [0,0],
+  [200, 0],
+  [400, 0],
+  [0, 150],
+  [200, 150],
+  [400, 150],
+  [0, 300],
+  [200, 300],
+  [400, 300],
+  [0, 450],
+  [200, 450],
+  [400, 450],
+  [0, 600],
+  [200, 600],
+  [400, 600],
+  [0, 750],
+]
+
+
 const matrizPersonagem = [
   [0, 0],
   [220, 0],
@@ -64,6 +124,9 @@ function preload() {
   imagemCenario = loadImage('https://i.imgur.com/jRCt0JV.png');
   imagemPersonagem = loadImage('https://i.imgur.com/IeWhcfL.png');
   imagemInimigo = loadImage('https://i.imgur.com/oy55ZMq.png');
+  imagemInimigoGrande = loadImage('https://i.imgur.com/1FcdB20.png');
+  imagemInimigoVoador = loadImage('https://i.imgur.com/eqBi9db.png');
+  imagemGameOver= loadImage('https://i.imgur.com/MciYoyl.png');
   somDoJogo = loadSound('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/sons/trilha_jogo.mp3');
   somDoPulo = loadSound('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/sons/somPulo.mp3');
 }
@@ -72,8 +135,18 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight); //faz com que o tamanho da tela do jogo seja do tamanho da tela que ele está agora
   cenario = new Cenario(imagemCenario, 3); //está aqui e não no draw para comer o menor espaço de memória possível
-  personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 110, 135, 220, 270);
-  inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 52, 52, 104, 104);
+  pontuacao = new Pontuacao();
+
+  personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 30, 110, 135, 220, 270);
+  const inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 30, 52, 52, 104, 104,10, 200);
+  const inimigoGrande = new Inimigo(matrizInimigoGrande, imagemInimigoGrande, width, 0, 200, 200, 400, 400, 10, 2750);
+  const inimigoVoador = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, width - 52, 200, 100, 75, 200, 150,10, 1500);
+
+  inimigos.push(inimigo);
+  inimigos.push(inimigoGrande);
+  inimigos.push(inimigoVoador);
+
+
   frameRate(40) //(frameRate) mostra a quantidade de frames rodados por segundo
   //toca o som do jogo
   somDoJogo.loop(); //essa função repete a música quando acaba, enquanto somDoJogo.play() só toca uma vez
@@ -94,14 +167,21 @@ function draw() {
   cenario.exibe();
   cenario.move();
 
+  pontuacao.exibe();
+  pontuacao.adicionarPonto();
+
   personagem.exibe();
   personagem.aplicaGravidade();
+  
+  inimigos.forEach(inimigo => {
+    inimigo.exibe();
+    inimigo.move();
 
-  inimigo.exibe();
-  inimigo.move();
+    if (personagem.estaColidindo(inimigo)) {
+      image(imagemGameOver, width/2 - 200, height/3);
+      noLoop(); //essa função faz tudo parar de andar
+    }
+  });
 
-  if (personagem.estaColidindo(inimigo)) {
-    console.log('colidiu')
-    noLoop(); //essa função faz tudo parar de andar
-  }
+  
 }
