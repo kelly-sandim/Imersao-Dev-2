@@ -22,9 +22,13 @@ class Personagem extends Animacao{
     }
   }
   
+  //Para usar a API de colisão, tem de decidir quem vai colidir com quem
+  //Por isso colocamos na personagem, pq ela quem vai colidir com os outros
   estaColidindo(inimigo) {
     const precisao = .7
-    const colisao = collideRectRect(
+    //é um collideRectRect pq a personagem e os inimigos são retângulos, mas tbm tem collideRectCircle
+    //passa x, y, largura e altura tanto da personagem quanto do inimigo
+    const colisao = collideRectRect( 
       this.x, 
       this.y, 
       this.largura * precisao, 

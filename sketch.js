@@ -1,3 +1,4 @@
+//estão fora para que todas as funções tenham acesso à eles
 let imagemCenario;
 let imagemPersonagem;
 let imagemInimigo;
@@ -57,6 +58,8 @@ const matrizPersonagem = [
   [660, 810],
 ]
 
+//pra carregar coisas como imagens e sons, tem uma fção no p5 chamada preload
+//OBS: O loadImage é função do p5 tbm
 function preload() {
   imagemCenario = loadImage('https://i.imgur.com/jRCt0JV.png');
   imagemPersonagem = loadImage('https://i.imgur.com/IeWhcfL.png');
@@ -65,15 +68,18 @@ function preload() {
   somDoPulo = loadSound('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/sons/somPulo.mp3');
 }
 
+//A função setup só roda uma vez, antes do jogo ser desenhado, enquanto a draw roda várias vezes
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  cenario = new Cenario(imagemCenario, 3);
+  createCanvas(windowWidth, windowHeight); //faz com que o tamanho da tela do jogo seja do tamanho da tela que ele está agora
+  cenario = new Cenario(imagemCenario, 3); //está aqui e não no draw para comer o menor espaço de memória possível
   personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 110, 135, 220, 270);
   inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 52, 52, 104, 104);
-  frameRate(40)
-  somDoJogo.loop();
+  frameRate(40) //(frameRate) mostra a quantidade de frames rodados por segundo
+  //toca o som do jogo
+  somDoJogo.loop(); //essa função repete a música quando acaba, enquanto somDoJogo.play() só toca uma vez
 }
 
+//essa função captura eventos do mouse/teclado
 function keyPressed() {
   if (key === 'ArrowUp') {
     personagem.pula()
@@ -81,7 +87,10 @@ function keyPressed() {
   }
 }
 
+//p5 trabalha com plano cartesiano, então vc pode passar as formas pra ele desenhar e pá
 function draw() {
+
+  //o p5 lê de cima pra baixo, por isso que se colocasse o background depois da personagem ele ficaria na frente dela  
   cenario.exibe();
   cenario.move();
 
@@ -93,6 +102,6 @@ function draw() {
 
   if (personagem.estaColidindo(inimigo)) {
     console.log('colidiu')
-    noLoop()
+    noLoop(); //essa função faz tudo parar de andar
   }
 }
