@@ -6,6 +6,12 @@ function setup() {
   somDoJogo.loop(); //essa função repete a música quando acaba, enquanto somDoJogo.play() só toca uma vez
   jogo = new Jogo();
   jogo.setup();
+  telaInicial = new TelaInicial();
+
+  cenas = {
+    jogo,
+    telaInicial
+  };
 }
 
 //essa função captura eventos do mouse/teclado
@@ -15,5 +21,5 @@ function keyPressed() {
 
 //p5 trabalha com plano cartesiano, então vc pode passar as formas pra ele desenhar e pá
 function draw() {
-  jogo.draw();
+  cenas[cenaAtual].draw();  
 }
