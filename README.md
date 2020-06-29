@@ -1,2 +1,2 @@
-# Imersao-Dev-2
-Novo código porque a gotinha não está aparecendo no meu código
+# Imersao Game Dev
+Semana de desenvolvimento de um jogo do tipo Infinite Runner simples pela Alura
