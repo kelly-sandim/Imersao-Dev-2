@@ -11,6 +11,7 @@ let fonteTelaInicial;
 
 let somDoPulo;
 let jogo;
+let fita;
 
 let cenaAtual = 'telaInicial';
 let cenas;
