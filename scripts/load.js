@@ -8,6 +8,7 @@ function preload() {
     imagemInimigoVoador = loadImage('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/imagens/inimigos/gotinha-voadora.png');
     imagemGameOver = loadImage('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/imagens/assets/game-over.png');
     imagemTelaInicial = loadImage('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/imagens/assets/telaInicial.png');
+    imagemVida = loadImage('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/imagens/assets/coracao.png');
     fonteTelaInicial = loadFont('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/imagens/assets/fonteTelaInicial.otf');
     somDoJogo = loadSound('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/sons/trilha_jogo.mp3');
     somDoPulo = loadSound('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/sons/somPulo.mp3');
