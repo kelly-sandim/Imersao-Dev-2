@@ -10,7 +10,7 @@ function preload() {
     imagemTelaInicial = loadImage('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/imagens/assets/telaInicial.png');
     imagemVida = loadImage('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/imagens/assets/coracao.png');
     fonteTelaInicial = loadFont('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/imagens/assets/fonteTelaInicial.otf');
-    fita = loadJSON('fita/fita.json');
+    fita = loadJSON('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/fita/fita.json');
     somDoJogo = loadSound('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/sons/trilha_jogo.mp3');
     somDoPulo = loadSound('https://raw.githubusercontent.com/kelly-sandim/Imersao-Game-Dev/master/sons/somPulo.mp3');
 }
